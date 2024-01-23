@@ -14,7 +14,7 @@ function Home() {
     return (
         <Center>
             <HStack w={'100%'} h={'100%'} bg={'#000080'} p={'4'}  >
-                <Img justifyContent={'left'} w={'20%'} h={'20%'} src='https://cms.signagetv.in/theme/default/img/xibologo.png' />
+                <Img justifyContent={'left'} w={'10%'} h={'10%'} src='https://www.bronx.co.in/assets/images/logowhite.png' />
                 <Spacer />
                 {/* <Box bg={'red'} > */}
                 <HStack spacing={8} color={'white'}>
@@ -94,7 +94,7 @@ function Home() {
                 </HStack>
                 {/* </Box> */}
                 <Spacer />
-                <Img justifyContent={'right'} w={'5%'} h={'5%'} src='https://cms.signagetv.in/theme/default/img/avatar.jpg' />
+                <Img justifyContent={'right'} borderRadius={30} w={'3%'} h={'3%'} src='https://cms.signagetv.in/theme/default/img/avatar.jpg' />
             </HStack>
 
             <Box></Box>
