@@ -7,6 +7,7 @@ import Display from './screen/Display';
 import PieChart from './screen/PieChart';
 import Main from './Main';
 import { BrowserRouter } from 'react-router-dom';
+import Content from './screen/Content';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       {/*<Display/>*/}
       {/*<MyChart />*/}
       {/*<PieChart/>*/}
+      {/*<Content/>*/}
       <Main/>
     </ChakraProvider>
     </BrowserRouter>

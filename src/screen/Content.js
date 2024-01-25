@@ -1,121 +1,56 @@
-import React,{useEffect, useRef,useState} from 'react'
-import { Box,Checkbox,HStack,Text,Select, Input, InputGroup ,InputRightElement, VStack, Button, Icon, Center} from '@chakra-ui/react'
-import { BsFillFileEarmarkPlusFill } from "react-icons/bs";
-import { FaUpload } from 'react-icons/fa'
-import { IoCloudUploadOutline } from "react-icons/io5";
-import './Content.css'
-//import axios from 'axios';
-import { bgColour,txtColor,plhColor,borderColor } from '../Dynamic';
-const Content = () => {
-const [folder,setFolder]=useState('null');
-console.log(process.env)
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-    //  const response = await axios.get(`http://192.168.1.4:4000/api/v1/readfolder`);
-    //  console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+import React from 'react'
+import { Box, Input, VStack ,Text, Flex} from '@chakra-ui/react';
+import Button from 'react-bootstrap/Button';
+import Dropdown from 'react-bootstrap/Dropdown';
+import Stack from 'react-bootstrap/Stack';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { CustomToggle ,CustomMenu} from './Custom';
+function Content() {
 
-  fetchData(); // Call the async function inside useEffect
-}, []);
+const DropdownEvent=()=>{
 
+return(
 
-    const fileInputRef = useRef(null);
-const [filename,setFilename]=useState('null')
-    const handleIconClick = () => {
-      fileInputRef.current.click();
-    };
-  
-    const handleFileChange = (event) => {
-      // Handle the file change event here
-      const selectedFile = event.target.files[0];
-      console.log('Selected file:', selectedFile);
-      setFilename(selectedFile);
-    };
+<Dropdown>
+    <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
+      Select folder
+    </Dropdown.Toggle>
+
+    <Dropdown.Menu as={CustomMenu}>
+      <Dropdown.Item eventKey="1">Red</Dropdown.Item>
+      <Dropdown.Item eventKey="2">Blue</Dropdown.Item>
+      <Dropdown.Item eventKey="3" active>
+        Orange
+      </Dropdown.Item>
+      <Dropdown.Item eventKey="1">Red-Orange</Dropdown.Item>
+    </Dropdown.Menu>
+  </Dropdown>
+
+)
+
+}
+
 
   return (
-    <div style={{position: ''}} >
-   <Box bg={bgColour}  >
-    <Center >
-<Box p={'10'} >
-<HStack mt={'20'} zIndex={'-2'}>
-    <InputGroup>
-<Input type='text' placeholder='Create folder' color={txtColor}  _placeholder={{ opacity: 1, color:plhColor }} borderColor={borderColor} />
-    <InputRightElement>
-      <Icon as={BsFillFileEarmarkPlusFill} cursor={'pointer'} color={plhColor} boxSize={5} />
-    </InputRightElement>
-    </InputGroup>
+    <div style={{marginTop:'70px', minHeight: '100vh', backgroundColor: 'blue',}}>
+
+{/*<Box bg={'red'} w={'25%'} minHeight={'100vh'} position={'fixed'}>sdf</Box>*/}
+<Flex>
+
+  
+</Flex>
+
+<Box  bg={'white'}>
+<Text color={'black'}>dskjfhv</Text>
 
 
 
-<Select
-  bg={bgColour}
-  borderColor={borderColor}
-  color={plhColor}
-  placeholder='---Select folder---'
->
-
-<option >jdh</option>
-<option>jdh</option>
-<option>jdh</option>
-<option>jdh</option>
-
-</Select>
-<Box>
-    
-<Box className="file-input-container" >
-      <input
-        type="file"
-        ref={fileInputRef}
-        onChange={handleFileChange}
-        className="file-input"
-        accept=".png, .jpg, .jpeg, .gif" // Set accepted file types if needed
-      />
-      <Box bg={bgColour} className="file-input-icon" onClick={handleIconClick}>
-       
-
-      <Icon as={FaUpload} color={plhColor} boxSize={4} />
-
-          
-
-            
-
-      </Box>
-
-    </Box>
 
 
 </Box>
-{/*<Input type='file'/>*/}
-</HStack>
 
-{filename !='null' &&
-
-<HStack justifyContent={'end'} pt={'5'}>
-    <Box>
-        <Text  >{filename.name} </Text>
-
-    </Box>
-       <Box>
-
-      {/*<Icon as={FaUpload} color={plhColor} boxSize={4} />*/}
-       <Button leftIcon={  <Icon as={IoCloudUploadOutline} color={plhColor} boxSize={4} />} variant='outline' borderColor={borderColor}>
- <Text color={plhColor}>Upload</Text>
-  </Button>
-       </Box>
-
-</HStack>
-     
-  }
-
-
-</Box>
-</Center>
-   </Box>
-   </div>
+<Box>sdjfb</Box>
+ </div>
   )
 }
 
