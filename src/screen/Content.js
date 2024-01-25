@@ -7,32 +7,32 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { CustomToggle ,CustomMenu} from './Custom';
 function Content() {
 
-const DropdownEvent=()=>{
+//const DropdownEvent=()=>{
 
-return(
+//return(
 
-<Dropdown>
-    <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
-      Select folder
-    </Dropdown.Toggle>
+//<Dropdown>
+//    <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
+//      Select folder
+//    </Dropdown.Toggle>
 
-    <Dropdown.Menu as={CustomMenu}>
-      <Dropdown.Item eventKey="1">Red</Dropdown.Item>
-      <Dropdown.Item eventKey="2">Blue</Dropdown.Item>
-      <Dropdown.Item eventKey="3" active>
-        Orange
-      </Dropdown.Item>
-      <Dropdown.Item eventKey="1">Red-Orange</Dropdown.Item>
-    </Dropdown.Menu>
-  </Dropdown>
+//    <Dropdown.Menu as={CustomMenu}>
+//      <Dropdown.Item eventKey="1">Red</Dropdown.Item>
+//      <Dropdown.Item eventKey="2">Blue</Dropdown.Item>
+//      <Dropdown.Item eventKey="3" active>
+//        Orange
+//      </Dropdown.Item>
+//      <Dropdown.Item eventKey="1">Red-Orange</Dropdown.Item>
+//    </Dropdown.Menu>
+//  </Dropdown>
 
-)
+//)
 
-}
+//}
 
 
   return (
-    <div style={{marginTop:'70px', minHeight: '100vh', backgroundColor: 'blue',}}>
+    <div >
 
 {/*<Box bg={'red'} w={'25%'} minHeight={'100vh'} position={'fixed'}>sdf</Box>*/}
 <Flex>
@@ -43,7 +43,7 @@ return(
 <Box  bg={'white'}>
 <Text color={'black'}>dskjfhv</Text>
 
-
+<Input marginTop={'10'}/>
 
 
 
