@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Box, Center, HStack, Img, Spacer, Text, Button, Icon } from '@chakra-ui/react'
+import { Box, Center, HStack, Img, Spacer,  Icon, Button } from '@chakra-ui/react'
 import {
     Menu,
     MenuItem,
@@ -13,6 +13,12 @@ import { bgColour, fsh1, fwh1, txtColor } from '../Dynamic'
 import { Link,useNavigate   } from 'react-router-dom'
 
 function Home() {
+
+   
+
+
+    
+    
     //const navigate = useNavigate ();
 
     //const handleLayoutClick = () => {
@@ -20,21 +26,23 @@ function Home() {
     //  navigate ('/layouts'); // Replace '/layouts' with your desired route
     //};
     return (
+
+        
         <Center pos={'fixed'} >
             <HStack w={'100%'} h={'100%'} bg={bgColour} p={'4'}  >
                 <Img justifyContent={'left'} w={'10%'} h={'10%'} src='https://www.bronx.co.in/assets/images/logowhite.png' />
                 <Spacer />
-                {/* <Box bg={'red'} > */}
                 <HStack spacing={8} color={txtColor}>
+                
                     <Menu >
                     <MenuButton fontSize={fsh1} fontWeight={fwh1} >
-                            Dashboard
+                           <Link> Dashboard</Link>
                         </MenuButton>
 
                     </Menu>
                         <Menu bg={bgColour}>
                             <MenuButton fontSize={fsh1} fontWeight={fwh1} >
-                                Schedule
+                            <Link> Schedule</Link>
                                 <Icon as={ChevronDownIcon} />
                             </MenuButton>
                             <MenuList bg={bgColour}>
@@ -46,7 +54,7 @@ function Home() {
 
                         <Menu>
                         <MenuButton fontSize={fsh1} fontWeight={fwh1} >
-                                Design
+                               <Link> Design</Link>
                                 <Icon as={ChevronDownIcon} />
                             </MenuButton>
                             <MenuList color={txtColor}  bg={bgColour} >
@@ -81,7 +89,7 @@ function Home() {
                             </MenuList>
                         </Menu>
 
-                        <Menu>
+                        <Menu  > 
                         <MenuButton fontSize={fsh1} fontWeight={fwh1} >
                                 Displays
                                 <Icon as={ChevronDownIcon} />
@@ -94,21 +102,19 @@ function Home() {
 
 
 
-                        <Menu>
-                        <MenuButton fontSize={fsh1} fontWeight={fwh1} >
+                        <Menu  placement="top-end"> 
+                        <MenuButton as={Button} fontSize={fsh1} fontWeight={fwh1} >
                                 Reporting
                                 <Icon as={ChevronDownIcon} />
                             </MenuButton>
-                            <MenuList color={txtColor}  bg={bgColour}>
+                            <MenuList color={txtColor}  bg={bgColour}  style={{zIndex:'999',position:'fixed',display:'block'}}>
                                 <MenuItem  bg={bgColour}> Display Statistics</MenuItem>
                                 <MenuItem  bg={bgColour}>Proof of Play</MenuItem>
                                 <MenuItem  bg={bgColour}> Libarary Usage</MenuItem>
 
                             </MenuList>
-                        </Menu>
-
-
-
+                        </Menu> 
+                        
                 </HStack>
                 {/* </Box> */}
                 <Spacer />
