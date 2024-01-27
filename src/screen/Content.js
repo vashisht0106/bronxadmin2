@@ -1,57 +1,131 @@
-import React from 'react'
-import { Box, Input, VStack ,Text, Flex} from '@chakra-ui/react';
-import Button from 'react-bootstrap/Button';
-import Dropdown from 'react-bootstrap/Dropdown';
-import Stack from 'react-bootstrap/Stack';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { CustomToggle ,CustomMenu} from './Custom';
-function Content() {
+import React, { useEffect, useRef, useState } from 'react'
+import { Box, Checkbox, HStack,VStack,Flex, Text, Select, Input, InputGroup, InputRightElement, Button, Icon, Center, Spacer,Grid } from '@chakra-ui/react'
+import { BsFillFileEarmarkPlusFill } from "react-icons/bs";
+import { FaUpload } from 'react-icons/fa'
+import { IoCloudUploadOutline } from "react-icons/io5";
+import './Content.css'
+import axios from 'axios';
+import { bgColour, txtColor, plhColor, borderColor } from '../Dynamic';
+import { FileInput } from './Custom';
+const Content = () => {
+  const [folder, setFolder] = useState([]);
+  const [rootfolder, setRootfolder] = useState("");
+  const [childfolder,setChildfolder] = useState("");
+const BACKEND_URL=process.env.REACT_APP_BACKEND_URL
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+          const response = await axios.get(`${BACKEND_URL}/api/v1/readfolder`);
+          setFolder(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-//const DropdownEvent=()=>{
+    fetchData(); // Call the async function inside useEffect
+  }, []);
 
-//return(
 
-//<Dropdown>
-//    <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
-//      Select folder
-//    </Dropdown.Toggle>
+  const fileInputRef = useRef(null);
+  const [filename, setFilename] = useState('null')
+  const handleIconClick = () => {
+    fileInputRef.current.click();
+  };
 
-//    <Dropdown.Menu as={CustomMenu}>
-//      <Dropdown.Item eventKey="1">Red</Dropdown.Item>
-//      <Dropdown.Item eventKey="2">Blue</Dropdown.Item>
-//      <Dropdown.Item eventKey="3" active>
-//        Orange
-//      </Dropdown.Item>
-//      <Dropdown.Item eventKey="1">Red-Orange</Dropdown.Item>
-//    </Dropdown.Menu>
-//  </Dropdown>
+  const handleFileChange = (event) => {
+    // Handle the file change event here
+    const selectedFile = event.target.files[0];
+    console.log('Selected file:', selectedFile);
+    setFilename(selectedFile);
+  };
 
-//)
 
-//}
+const createFolder=async()=>{
+
+
+const requestData = {
+  rootfolder,
+  childfolder
+};
+
+
+try {
+  const config={headers:{"Content-Type":"application/json"}}
+const {data}=await axios.post(`${BACKEND_URL}/api/v1/createfolder`,requestData,config)
+console.log(data)
+} catch (error) {
+ console.log(error) 
+}
+
+}
+
+
+
+
+
 
 
   return (
-    <div >
+    <div>
+      <Box bg={bgColour} minHeight={'100vh'} >
+        <Center >
+      <Grid
+      templateColumns={{ sm: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }}
+      gap={5}
+      mt={'5'}
+    >
+          
+              <InputGroup>
+                <Input type='text' placeholder='Create folder' bg={bgColour} color={txtColor} _placeholder={{ opacity: 1, color: plhColor }} borderColor={borderColor} 
+                
+                value={rootfolder}
+                onChange={(e)=>setRootfolder(e.target.value)}
+                
+                />
+                <InputRightElement>
+                  <Icon as={BsFillFileEarmarkPlusFill} onClick={createFolder} cursor={'pointer'} color={plhColor} boxSize={5} />
+                </InputRightElement>
+              </InputGroup>
 
-{/*<Box bg={'red'} w={'25%'} minHeight={'100vh'} position={'fixed'}>sdf</Box>*/}
-<Flex>
-
-  
-</Flex>
-
-<Box  bg={'white'}>
-<Text color={'black'}>dskjfhv</Text>
-
-<Input marginTop={'10'}/>
 
 
+              <Select
+                bg={bgColour}
+                borderColor={borderColor}
+                color={plhColor}
+                placeholder='---Select folder---'
+              >
 
-</Box>
+              {folder.length>0 &&
+              
+              folder.map((item,index)=>(
 
-<Box>sdjfb</Box>
- </div>
+<option key={index}>{item}</option>
+
+              ))
+            
+              }
+
+
+              </Select>
+           <FileInput/>
+
+
+
+
+
+
+
+
+
+           </Grid>
+
+           </Center>
+              </Box>
+         
+        
+    </div>
   )
 }
 
-export default Content
+export default Content

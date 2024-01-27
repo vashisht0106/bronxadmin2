@@ -15,7 +15,7 @@ import { Link,useNavigate   } from 'react-router-dom'
 function Home() {
    
     return (
-        <Center position={'fixed'} top={0} left={0} w={'100%'} >
+        <Center >
             {/*<Header>*/}
             <HStack w={'100%'} h={'100%'} bg={bgColour} p={'4'}  >
                 <Img justifyContent={'left'} w={'10%'} h={'10%'} src='https://www.bronx.co.in/assets/images/logowhite.png' />
@@ -24,13 +24,13 @@ function Home() {
                 <HStack spacing={8} color={txtColor}>
                     <Menu >
                     <MenuButton fontSize={fsh1} fontWeight={fwh1} >
-                            Dashboard
+                    🐬🅰💲♓🅱😀🌱🐬
                         </MenuButton>
 
                     </Menu>
                         <Menu bg={bgColour}>
-                            <MenuButton fontSize={fsh1} fontWeight={fwh1} >
-                                Schedule
+                            <MenuButton fontSize={fsh1} fontWeight={fwh1}  >
+                          Schedule
                                 <Icon as={ChevronDownIcon} />
                             </MenuButton>
                             <MenuList bg={bgColour}>

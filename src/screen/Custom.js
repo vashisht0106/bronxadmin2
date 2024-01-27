@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
 import { render } from '@testing-library/react';
+import { FaUpload } from 'react-icons/fa';
+import './Custom.css'
+import { Box, Checkbox, HStack,VStack,Flex, Text, Select, Input, InputGroup, InputRightElement, Button, Icon, Center, Spacer,Grid } from '@chakra-ui/react'
+import { bgColour, plhColor } from '../Dynamic';
+import { IoMdCloudUpload } from "react-icons/io";
+
 
 // The forwardRef is important!!
 // Dropdown needs access to the DOM node in order to position the Menu
@@ -66,3 +72,76 @@ import { render } from '@testing-library/react';
 //    </Dropdown.Menu>
 //  </Dropdown>,
 //);
+
+
+
+
+
+export const FileInput = () => {
+  const [selectedFile, setSelectedFile] = useState(null);
+  const handleButtonClick = () => {
+    // Trigger the file input when the button is clicked
+    document.getElementById('fileInput').click();
+  };
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setSelectedFile(file);
+  };
+
+  return (
+    //<div className="file-input-container">
+      //<Center bg={'red'}>
+        <Box>
+      <label htmlFor="fileInput" className="file-input-label">
+
+        <HStack>
+      {/*<FaUpload className="upload-icon" />*/}
+      <Button   className="file-input-label" bg={bgColour} variant={'outline'} onClick={handleButtonClick}>
+
+     <Icon as={FaUpload} color={plhColor}/>  
+
+      </Button>
+
+
+
+
+
+
+
+
+        {selectedFile ?
+
+<HStack justifyContent={'left'}  >
+              
+              <Box>
+
+                {/*{/<Icon as={FaUpload} color={plhColor} boxSize={4} />/}*/}
+                <Button leftIcon={<Icon as={IoMdCloudUpload} color={bgColour} boxSize={4} />} variant='outline' borderColor={bgColour}>
+                  <Text color={bgColour}>Upload</Text>
+                </Button>
+              </Box>
+
+              <Box>
+                <Text>{selectedFile.name} </Text>
+
+              </Box>
+            </HStack>
+
+         :'' }
+
+</HStack>
+
+
+      </label>
+      <input
+        type="file"
+        id="fileInput"
+        onChange={handleFileChange}
+        style={{ display: 'none' }}
+      />
+      </Box>
+      //</Center>
+    //{/*</div>*/}
+  );
+};
+

@@ -5,7 +5,7 @@ exports.fontColor='black';
 exports.fontSize="10";
 exports.buttonColor='gray';
 
-exports.borderColor='gray.400'
+exports.borderColor='gray.100'
 exports.plhColor='gray.400'
 exports.txtColor='gray.200'
 exports.fsh1='20'
