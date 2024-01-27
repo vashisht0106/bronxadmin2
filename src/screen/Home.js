@@ -20,7 +20,7 @@ function Home() {
     //  navigate ('/layouts'); // Replace '/layouts' with your desired route
     //};
     return (
-        <Center pos={'fixed'} >
+        <Center >
             <HStack w={'100%'} h={'100%'} bg={bgColour} p={'4'}  >
                 <Img justifyContent={'left'} w={'10%'} h={'10%'} src='https://www.bronx.co.in/assets/images/logowhite.png' />
                 <Spacer />
@@ -94,8 +94,8 @@ function Home() {
 
 
 
-                        <Menu  placement="top-end"> 
-                        <MenuButton as={Button} fontSize={fsh1} fontWeight={fwh1} >
+                        <Menu  > 
+                        <MenuButton  fontSize={fsh1} fontWeight={fwh1} >
                                 Reporting
                                 <Icon as={ChevronDownIcon} />
                             </MenuButton>

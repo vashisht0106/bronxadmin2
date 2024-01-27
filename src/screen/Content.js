@@ -1,23 +1,26 @@
-import React,{useEffect, useRef,useState} from 'react'
-import { Box,Checkbox,HStack,Text,Select, Input, InputGroup ,InputRightElement, VStack, Button, Icon, Center} from '@chakra-ui/react'
+import React, { useEffect, useRef, useState } from 'react'
+import { Box, Checkbox, HStack,VStack,Flex, Text, Select, Input, InputGroup, InputRightElement, Button, Icon, Center, Spacer,Grid } from '@chakra-ui/react'
 import { BsFillFileEarmarkPlusFill } from "react-icons/bs";
 import { FaUpload } from 'react-icons/fa'
 import { IoCloudUploadOutline } from "react-icons/io5";
 import './Content.css'
-//import axios from 'axios';
-import { bgColour,txtColor,plhColor,borderColor } from '../Dynamic';
+import axios from 'axios';
+import { bgColour, txtColor, plhColor, borderColor } from '../Dynamic';
+import { FileInput } from './Custom';
 const Content = () => {
-const [folder,setFolder]=useState('null');
-console.log(process.env)
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-    //  const response = await axios.get(`http://192.168.1.4:4000/api/v1/readfolder`);
-    //  console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const [folder, setFolder] = useState([]);
+  const [rootfolder, setRootfolder] = useState("");
+  const [childfolder,setChildfolder] = useState("");
+const BACKEND_URL=process.env.REACT_APP_BACKEND_URL
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+          const response = await axios.get(`${BACKEND_URL}/api/v1/readfolder`);
+          setFolder(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
     fetchData(); // Call the async function inside useEffect
   }, []);
@@ -63,17 +66,28 @@ console.log(data)
 
 
   return (
-    <div style={{position: ''}} >
-   <Box bg={bgColour}  >
-    <Center >
-<Box p={'10'} >
-<HStack mt={'20'} zIndex={'-2'}>
-    <InputGroup>
-<Input type='text' placeholder='Create folder' color={txtColor}  _placeholder={{ opacity: 1, color:plhColor }} borderColor={borderColor} />
-    <InputRightElement>
-      <Icon as={BsFillFileEarmarkPlusFill} cursor={'pointer'} color={plhColor} boxSize={5} />
-    </InputRightElement>
-    </InputGroup>
+    <div>
+      <Box bg={bgColour} minHeight={'100vh'} >
+        <Center >
+      <Grid
+      templateColumns={{ sm: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }}
+      gap={5}
+
+      mt={'10'}
+      
+    >
+          
+              <InputGroup>
+                <Input type='text' placeholder='Create folder' bg={bgColour} color={txtColor} _placeholder={{ opacity: 1, color: plhColor }} borderColor={borderColor} 
+                
+                value={rootfolder}
+                onChange={(e)=>setRootfolder(e.target.value)}
+                
+                />
+                <InputRightElement>
+                  <Icon as={BsFillFileEarmarkPlusFill} onClick={createFolder} cursor={'pointer'} color={plhColor} boxSize={5} />
+                </InputRightElement>
+              </InputGroup>
 
 
 
@@ -84,65 +98,36 @@ console.log(data)
                 placeholder='---Select folder---'
               >
 
-<option >jdh</option>
-<option>jdh</option>
-<option>jdh</option>
-<option>jdh</option>
+              {folder.length>0 &&
+              
+              folder.map((item,index)=>(
 
-</Select>
-<Box>
-    
-<Box className="file-input-container" >
-      <input
-        type="file"
-        ref={fileInputRef}
-        onChange={handleFileChange}
-        className="file-input"
-        accept=".png, .jpg, .jpeg, .gif" // Set accepted file types if needed
-      />
-      <Box bg={bgColour} className="file-input-icon" onClick={handleIconClick}>
-       
+<option key={index}>{item}</option>
 
-      <Icon as={FaUpload} color={plhColor} boxSize={4} />
-
-          
-
+              ))
             
-
-      </Box>
-
-    </Box>
+              }
 
 
-</Box>
-{/*<Input type='file'/>*/}
-</HStack>
-
-{filename !='null' &&
-
-<HStack justifyContent={'end'} pt={'5'}>
-    <Box>
-        <Text  >{filename.name} </Text>
-
-    </Box>
-       <Box>
-
-      {/*<Icon as={FaUpload} color={plhColor} boxSize={4} />*/}
-       <Button leftIcon={  <Icon as={IoCloudUploadOutline} color={plhColor} boxSize={4} />} variant='outline' borderColor={borderColor}>
- <Text color={plhColor}>Upload</Text>
-  </Button>
-       </Box>
-
-</HStack>
-     
-  }
+              </Select>
+           <FileInput/>
 
 
-</Box>
-</Center>
-   </Box>
-   </div>
+
+
+
+
+
+
+
+           </Grid>
+
+           </Center>
+              </Box>
+         
+        
+    </div>
   )
 }
 
-export default Content
+export default  Content
