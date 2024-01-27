@@ -15,12 +15,12 @@ function App() {
   return (
     <BrowserRouter>
     {/* <ChakraProvider> */}
-      <Home />
-      {/* <Navbar/> */}
+      {/* <Home /> */}
+      <Navbar/>
       {/*<Display/>*/}
       {/*<MyChart />*/}
       {/*<PieChart/>*/}
-      {/* <Main/> */}
+      <Main/>
       {/* <Menu/> */}
     {/* </ChakraProvider> */}
     </BrowserRouter>
