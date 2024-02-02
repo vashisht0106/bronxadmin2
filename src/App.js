@@ -9,21 +9,21 @@ import Display from './screen/Display';
 import PieChart from './screen/PieChart';
 import Main from './Main';
 import { BrowserRouter } from 'react-router-dom';
+import Navbar from './screen/Navbar';
+//import { SocketProvider } from './context/socket/SocketProvider';
 
 function App() {
   
   return (
     <BrowserRouter>
-    {/* <ChakraProvider> */}
-      <Home />
-      {/*<Navbar/>*/}
+      {/*<SocketProvider>*/}
+      <Navbar/>
       {/*<Display/>*/}
       {/*<MyChart />*/}
       {/*<PieChart/>*/}
       {/*<Content/>*/}
       <Main/>
-      {/* <Menu/> */}
-    {/* </ChakraProvider> */}
+    {/*</SocketProvider>*/}
     </BrowserRouter>
   )
 }

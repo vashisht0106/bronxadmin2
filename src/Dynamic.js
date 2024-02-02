@@ -1,4 +1,4 @@
-exports.bgColour='gray.600';
+exports.bgColour='blue.900';
 
 exports.fontColor='black';
 

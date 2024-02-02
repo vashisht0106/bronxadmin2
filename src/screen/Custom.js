@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 //import Dropdown from 'react-bootstrap/Dropdown';
 //import Form from 'react-bootstrap/Form';
 //import { render } from '@testing-library/react';
-import { FaUpload } from 'react-icons/fa';
+import { BiSelectMultiple } from "react-icons/bi";
 import './Custom.css'
 import { Box, Checkbox, HStack,VStack,Flex, Text, Select, Input, InputGroup, InputRightElement, Button, Icon, Center, Spacer,Grid } from '@chakra-ui/react'
-import { bgColour, plhColor } from '../Dynamic';
+import { bgColour, borderColor, plhColor } from '../Dynamic';
 import { IoMdCloudUpload } from "react-icons/io";
+import Content from './Content';
+import axios from 'axios';
 
 
 // The forwardRef is important!!
@@ -77,8 +79,13 @@ import { IoMdCloudUpload } from "react-icons/io";
 
 
 
-export const FileInput = () => {
+export const FileInput = ({BACKEND_URL}) => {
+//console.log(BACKEND_URL)
+
+console.log('BACKEND_URL',BACKEND_URL);
+//console.log('url',url)
   const [selectedFile, setSelectedFile] = useState(null);
+  const [file_status, setFile_status] = useState(false);
   const handleButtonClick = () => {
     // Trigger the file input when the button is clicked
     document.getElementById('fileInput').click();
@@ -88,17 +95,65 @@ export const FileInput = () => {
     setSelectedFile(file);
   };
 
+
+
+
+
+
+
+  const ContentUpload = async () => {
+
+    
+    if (!selectedFile) {
+      console.log('No file selected');
+      return;
+    }
+    
+    try {
+      setFile_status(true)
+      const formData = new FormData();
+     
+  
+        formData.append('video', selectedFile);
+  
+    
+  
+      // You can also append additional data to the form data if needed
+      // formData.append('key', 'value');
+  
+      const response = await axios.post(`${BACKEND_URL}/api/v1/upload`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+  
+      console.log('File uploaded successfully', response.data);
+
+      setFile_status(false);
+
+    } catch (error) {
+      console.error('Error uploading file', error);
+    }
+  };
+  
+
+
+
+
+
+
+
   return (
     //<div className="file-input-container">
       //<Center bg={'red'}>
         <Box>
       <label htmlFor="fileInput" className="file-input-label">
 
-        <HStack>
+        <HStack gap={'5'} justifyContent={'end'}>
       {/*<FaUpload className="upload-icon" />*/}
       <Button   className="file-input-label" bg={bgColour} variant={'outline'} onClick={handleButtonClick}>
 
-     <Icon as={FaUpload} color={plhColor}/>  
+     <Icon as={BiSelectMultiple} color={plhColor}/>  
 
       </Button>
 
@@ -109,25 +164,29 @@ export const FileInput = () => {
 
 
 
-        {selectedFile ?
 
-<HStack justifyContent={'left'}  >
+<HStack  gap={'5'} >
               
               <Box>
 
                 {/*{/<Icon as={FaUpload} color={plhColor} boxSize={4} />/}*/}
-                <Button leftIcon={<Icon as={IoMdCloudUpload} color={bgColour} boxSize={4} />} variant='outline' borderColor={bgColour}>
-                  <Text color={bgColour}>Upload</Text>
+                <Button
+                 leftIcon={<Icon as={IoMdCloudUpload} color={plhColor} boxSize={5} 
+              
+                />} variant='outline' borderColor={borderColor}   
+                onClick={ContentUpload}>
+                  <Text color={plhColor}>{file_status?"Uploading":'Upload'}</Text>
                 </Button>
               </Box>
 
-              <Box>
-                <Text>{selectedFile.name} </Text>
+        {selectedFile ?
+              <Box  maxH={'10'}  maxWidth={'150'} overflow={'hidden'}>
+                <Text fontSize={'10'} color={plhColor}>{selectedFile.name} </Text>
 
               </Box>
+         :'' }
             </HStack>
 
-         :'' }
 
 </HStack>
 
@@ -141,6 +200,8 @@ export const FileInput = () => {
       />
       </Box>
       //</Center>
+
+      
     //{/*</div>*/}
   );
 };

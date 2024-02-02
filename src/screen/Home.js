@@ -73,7 +73,9 @@ function Home() {
                             <MenuList color={txtColor}  bg={bgColour}
                             >
                                 <MenuItem  bg={bgColour}  >Playlists</MenuItem>
-                                <MenuItem  bg={bgColour} >Media</MenuItem>
+                                <Link to='manage_event'>
+                                <MenuItem  bg={bgColour}>Event</MenuItem>
+                                </Link>
                                 <Link to='/manage_content'>
                                 <MenuItem  bg={bgColour} >Content</MenuItem>
                                 </Link>
