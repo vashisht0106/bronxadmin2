@@ -73,7 +73,7 @@ event.map((item,index)=>(
 
 <Td>{item.eventid}</Td>
 <Td>{item.layoutstyle}</Td>
-<Td ><Box w={'20'} h={'20'}><Text>{item.source}</Text></Box></Td>
+<Td ><Box w={'20'} h={'20'} overflow={'hidden'}><Text>{item.source}</Text></Box></Td>
 <Td>{item.startdate}</Td>
 <Td>{item.enddate}</Td>
 <Td>{item.starttime}</Td>

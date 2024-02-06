@@ -169,7 +169,7 @@ Readfile(filterfile)
                 onChange={(e)=>setFilterfile(e.target.value)}
               >
 
-              {folder.length>0 &&
+              {folder && folder.length>0 &&
               
               folder.map((item,index)=>(
 

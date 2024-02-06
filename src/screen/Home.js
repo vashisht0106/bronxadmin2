@@ -32,7 +32,7 @@ function Home() {
                         </MenuButton>
 
                     </Menu>
-                        <Menu bg={bgColour}>
+                        {/*<Menu bg={bgColour}>
                             <MenuButton fontSize={fsh1} fontWeight={fwh1} >
                                 Schedule
                                 <Icon as={ChevronDownIcon} />
@@ -42,7 +42,7 @@ function Home() {
                                 <MenuItem bg={bgColour} >Dayparting</MenuItem>
 
                             </MenuList>
-                        </Menu>
+                        </Menu>*/}
 
                         <Menu>
                         <MenuButton fontSize={fsh1} fontWeight={fwh1} >

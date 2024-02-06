@@ -37,7 +37,7 @@ const { isOpen, onOpen, onClose } = useDisclosure();
                         </MenuButton>
 
                     </Menu>
-                        <Menu bg={bgColour}>
+                        {/*<Menu bg={bgColour}>
                             <MenuButton fontSize={fsh1} fontWeight={fwh1} >
                             <Link> Schedule</Link>
                                 <Icon as={ChevronDownIcon} />
@@ -47,7 +47,7 @@ const { isOpen, onOpen, onClose } = useDisclosure();
                                 <MenuItem bg={bgColour} >Dayparting</MenuItem>
 
                             </MenuList>
-                        </Menu>
+                        </Menu>*/}
 
                         <Menu>
                         <MenuButton fontSize={fsh1} fontWeight={fwh1} >

@@ -19,8 +19,8 @@ function App() {
       {/*<SocketProvider>*/}
       <Navbar/>
       {/*<Display/>*/}
-      {/*<MyChart />*/}
-      {/*<PieChart/>*/}
+      {/*<MyChart />
+      <PieChart/>*/}
       {/*<Content/>*/}
       <Main/>
     {/*</SocketProvider>*/}
