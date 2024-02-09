@@ -5,7 +5,7 @@ import {Box} from '@chakra-ui/react'
 import PieChart from './PieChart'
 const Dashboard = () => {
   return (
-    <Box>
+    <Box >
 
         <Display/>
 

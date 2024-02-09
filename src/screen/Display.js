@@ -8,9 +8,8 @@ import { TbSettings } from "react-icons/tb";
 function Display() {
     return (
         <HStack
-            w={'100%'}
-            h={"100%"}
-            bg={"gray.100"}
+           
+            
             p={{ base: "2", sm: "4" }}
             spacing={"4"}
             justifyContent={"space-around"}

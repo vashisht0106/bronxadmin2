@@ -1,4 +1,4 @@
-import React, { useEffect,useContext } from 'react';
+import React, { useEffect,useContext,useState } from 'react';
 import {
   Table,
   Thead,
@@ -10,7 +10,10 @@ import {
   IconButton,
   chakra,
   Tooltip,
-  Box,Text
+  Box,
+  Text,
+  Spinner,
+  Center
 } from '@chakra-ui/react';
 
 import {useSelector,useDispatch} from 'react-redux'
@@ -20,6 +23,7 @@ import SocketContext from '../context/socket/SocketContext';
 const Event = () => {
 const dispatch=useDispatch()
 const socket=useContext(SocketContext);
+const [eventId,setEventid] =useState('');
 //const socket=useSocket()
 useEffect(()=>{
 
@@ -28,7 +32,7 @@ dispatch(fetchEvent())
 },[socket])
 
 
-const {event} =useSelector((state)=>state.layoutReducer)
+const {event,isLoading} =useSelector((state)=>state.layoutReducer)
 
 
 
@@ -39,7 +43,7 @@ const handlePublish = (eid) => {
   //  eventId: eventId,
   //  // Add other data fields as needed
   //};
-
+setEventid(eid);
   // Emit the 'screenvalue' event to the server
   console.log('eid',eid)
   socket.emit('eventID', eid);
@@ -52,11 +56,31 @@ const handlePublish = (eid) => {
 
 
   return (
-    <Table variant="striped" colorScheme="teal" size="md">
+    <Box p={'10'}>
+{isLoading?
+ 
+
+<Box minH={'100vh'}>
+<Center>
+ <Spinner
+  thickness='4px'
+  speed='0.65s'
+  emptyColor='gray.200'
+  color='blue.500'
+  size='xl'
+/>
+</Center>
+</Box>
+
+
+:
+
+<Box minH={'100vh'}>
+    <Table variant="striped" colorScheme="teal" size="md" >
       <Thead fontSize={12} bg={bgColour} color={txtColor}>
         <Tr >
-          <Th color={txtColor}>Event ID</Th>
-          <Th color={txtColor}>Layout Style</Th>
+          <Th color={txtColor} >EID</Th>
+          <Th color={txtColor}>Style</Th>
           <Th color={txtColor} w={10}>Source</Th>
           <Th color={txtColor}>Start Date</Th>
           <Th color={txtColor}>Start Time</Th>
@@ -80,7 +104,10 @@ event.map((item,index)=>(
 
 
 <Td>{item.endtime}</Td>
-<Td><Button w='12' h='6' fontSize={10} variant={'outline'} color={borderColor}onClick={()=>handlePublish(item.eventid)}>Publish</Button></Td>
+<Td><Button w='12' h='6' fontSize={10} variant={'outline'} 
+color={eventId==(item.eventid)?"green":borderColor} colorScheme={eventId==(item.eventid)?"green":"gray"} onClick={()=>handlePublish(item.eventid)} borderWidth={eventId==(item.eventid)?"2px":"1px"}>
+  
+ {eventId==(item.eventid)?"Active":"Publish"}</Button></Td>
 </Tr>
 
 ))
@@ -99,6 +126,9 @@ event.map((item,index)=>(
       <Tbody>
          </Tbody>
     </Table>
+    </Box>
+}
+    </Box>
   );
 };
 
